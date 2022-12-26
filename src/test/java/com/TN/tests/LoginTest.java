@@ -37,6 +37,7 @@ public class LoginTest extends BaseClass{
 		driver.quit();
 	}
 	
+	// Login Test Cases
 	
 	@Test(priority=1,dataProvider="validCredentialsSupplier")
 	public void verifyLoginWithValidCredentials(String email, String password) {

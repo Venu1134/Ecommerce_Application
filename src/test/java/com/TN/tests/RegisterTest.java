@@ -38,6 +38,8 @@ public class RegisterTest extends BaseClass {
 		driver.quit();
 	}
 
+	// Register Test Cases
+	
 	@Test(priority = 1)
 	public void verifyRegisterWithMandatoryFields() {
 

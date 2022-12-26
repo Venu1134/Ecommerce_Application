@@ -31,6 +31,7 @@ public class SearchProductTest extends BaseClass {
 		driver.quit();
 	}
 	
+	// Search Product Test Cases
 	@Test(priority=1)
 	public void verifySearchWithExsistingProduct() {
 		
