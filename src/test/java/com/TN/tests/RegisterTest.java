@@ -49,7 +49,6 @@ public class RegisterTest extends BaseClass {
 
 		Assert.assertTrue(accountSuccessPage.verifyAccountCreateSuccessMessage());
 
-		driver.quit();
 	}
 
 	@Test(priority = 2)
@@ -61,7 +60,6 @@ public class RegisterTest extends BaseClass {
 
 		Assert.assertTrue(accountSuccessPage.verifyAccountCreateSuccessMessage());
 
-		driver.quit();
 	}
 
 	@Test(priority = 3)
@@ -73,7 +71,6 @@ public class RegisterTest extends BaseClass {
 
 		Assert.assertTrue(registerPage.verifyEmailExistsWarningMessage());
 
-		driver.quit();
 	}
 
 	@Test(priority = 4)
@@ -89,6 +86,14 @@ public class RegisterTest extends BaseClass {
 						testDataProp.getProperty("expectedTelephoneWarningMessage"),
 						testDataProp.getProperty("expectedPasswordWarningMessage")),"Warning Message is not displayed");
 
-		driver.quit();
 	}
+	
+	@Test(priority = 5)
+	public void verifyRegisterAccountWithDifferentPasswords() {
+		registerPage.registerAccountWithDifferentPasswords(testDataProp.getProperty("firstName"), testDataProp.getProperty("lastName"),
+				prop.getProperty("validEmail"), testDataProp.getProperty("telephone"),
+				prop.getProperty("validPassword"), testDataProp.getProperty("invalidPassword"));
+		Assert.assertTrue(registerPage.verifyPasswordMismatchWarningMessage(testDataProp.getProperty("expectedPasswordMismatchWarningMessage")));
+	}
+	
 }
