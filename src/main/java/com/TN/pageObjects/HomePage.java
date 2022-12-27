@@ -57,10 +57,6 @@ public class HomePage {
 		return new RegisterPage(driver);
 	}
 	
-	public void enterProductNameInSearchField(String productName) {
-		searchField.sendKeys(productName);
-	}
-	
 	public SearchPage clickOnSearchButton() {
 		searchButton.click();
 		return new SearchPage(driver);

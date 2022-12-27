@@ -33,4 +33,14 @@ public class ForgotPasswordPage {
 		continueButton.click();
 		return new LoginPage(driver);
 	}
+	
+	public boolean getEmailNotFoundWarningMessage(String expectedEmailNotFoundErrorMessage) {
+		String actualEmailNotFoundErrorMessage = emailNotFoundWarningMessage.getText();
+		boolean actualEmailNotFoundErrorMessageStatus = actualEmailNotFoundErrorMessage.equals(expectedEmailNotFoundErrorMessage);
+		return actualEmailNotFoundErrorMessageStatus;
+	}
+	
+	public void verifyEmailNotFoundMessage() {
+		continueButton.click();
+	}
 }
