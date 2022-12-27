@@ -9,6 +9,8 @@
       <class name="com.TN.tests.RegisterTest"/>
       <class name="com.TN.tests.LoginTest"/>
       <class name="com.TN.tests.SearchProductTest"/>
+      <class name="com.TN.tests.ForgotPasswordTest"/>
+      <class name="com.TN.tests.AddToCartTest"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->
