@@ -20,8 +20,14 @@ public class SearchPage {
 	@FindBy(xpath="//*[@id='button-search']/following-sibling::p")
 	private WebElement TextMessageForNoProduct;
 	
+	//Actions
 	public boolean verifyProductName() {
 		return validProductName.isDisplayed();
+	}
+	
+	public ProductDetailsPage clickOnProductName() {
+		validProductName.click();
+		return new ProductDetailsPage(driver);
 	}
 	
 	public String verifyActualTextMessageForNoProduct() {

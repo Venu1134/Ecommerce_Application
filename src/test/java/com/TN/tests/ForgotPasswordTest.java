@@ -10,6 +10,7 @@ import com.TN.base.BaseClass;
 import com.TN.pageObjects.ForgotPasswordPage;
 import com.TN.pageObjects.HomePage;
 import com.TN.pageObjects.LoginPage;
+import com.TN.utilities.UtilityClass;
 
 public class ForgotPasswordTest extends BaseClass{
 
@@ -35,15 +36,23 @@ public class ForgotPasswordTest extends BaseClass{
 		driver.quit();
 	}
 	
-	@Test
+	@Test(priority=1)
 	public void verifyForgotPasswordWithRegisteredEmail() {
 		forgotPasswordPage.enterEmailAddress(prop.getProperty("validEmail"));
 		loginPage = forgotPasswordPage.clickOnContinueButton();
 		Assert.assertTrue(loginPage.verifyForgotPasswordConfirmationMessage(testDataProp.getProperty("expectedForgotPasswordConfirmationMessage")));
 	}
 	
-	@Test
+	@Test(priority=2)
+	public void verifyForgotPasswordWithNonRegisteredEmail() {
+		forgotPasswordPage.enterEmailAddress(UtilityClass.getInvalidEmail());
+		loginPage = forgotPasswordPage.clickOnContinueButton();
+		Assert.assertTrue(forgotPasswordPage.getEmailNotFoundWarningMessage(testDataProp.getProperty("expectedEmailNotFoundErrorMessage")));
+	}
+	
+	@Test(priority=3)
 	public void verifyForgotPasswordWithNoEmail() {
-		
+		forgotPasswordPage.verifyEmailNotFoundMessage();
+		Assert.assertTrue(forgotPasswordPage.getEmailNotFoundWarningMessage(testDataProp.getProperty("expectedEmailNotFoundErrorMessage")));
 	}
 }
