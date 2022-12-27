@@ -27,6 +27,12 @@ public class LoginPage {
 	@FindBy(xpath="//*[contains(@class,'alert-dismissible')]")
 	private WebElement invalidCredentialsErrorMessage;
 	
+	@FindBy(linkText="Forgotten Password")
+	private WebElement forgotPassword;
+	
+	@FindBy(xpath="//*[contains(text(),' An email with a confirmation')]")
+	private WebElement forgotPasswordConfirmationMessage;
+	
 	//Actions
 	public void enterEmail(String email) {
 		emailTextField.sendKeys(email);
@@ -50,5 +56,16 @@ public class LoginPage {
 	
 	public boolean verifyInvalidCredentialsErrorMessage() {
 		return invalidCredentialsErrorMessage.isDisplayed();
+	}
+	
+	public ForgotPasswordPage clickOnForgotPassword() {
+		forgotPassword.click();
+		return new ForgotPasswordPage(driver);
+	}
+	
+	public boolean verifyForgotPasswordConfirmationMessage(String expectedForgotPasswordConfirmationMessage) {
+		String actualForgotPasswordConfirmationMessage = forgotPasswordConfirmationMessage.getText();
+		boolean forgotPasswordConfirmationMessageStatus = actualForgotPasswordConfirmationMessage.equals(expectedForgotPasswordConfirmationMessage);
+		return forgotPasswordConfirmationMessageStatus;
 	}
 }

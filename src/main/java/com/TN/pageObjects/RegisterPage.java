@@ -66,6 +66,9 @@ public class RegisterPage {
 	@FindBy(xpath = "//*[text()=' Warning: You must agree to the Privacy Policy!']")
 	private WebElement privacyPolicyWarningMessage;
 
+	@FindBy(xpath="//*[@class='text-danger']")
+	private WebElement passwordMismatch;
+	
 	// Actions
 	public void enterFirstName(String firstName) {
 		firstNameTextField.sendKeys(firstName);
@@ -137,6 +140,11 @@ public class RegisterPage {
 		String actualPrivacyPolicyWarningMesssage = privacyPolicyWarningMessage.getText();
 		return actualPrivacyPolicyWarningMesssage;
 	}
+	
+	public String passwordMismatch() {
+		String actualPasswordMismatchWarningMessage = passwordMismatch.getText();
+		return actualPasswordMismatchWarningMessage;
+	}
 
 	public AccountSuccessPage registerWithMandatoryFields(String firstName, String lastName, String email,
 			String telephone, String password) {
@@ -186,5 +194,23 @@ public class RegisterPage {
 
 		return privacyPolicyWarningMessageStatus && firstNameWarningMessageStatus && lastNameWarningMessageStatus
 				&& emailWarningMessageStatus && telephoneWarningMessageStatus && passwordWarningMessageStatus;
+	}
+	
+	public void registerAccountWithDifferentPasswords(String firstName, String lastName, String email, String telephone,
+			String password, String confirmPassword) {
+		firstNameTextField.sendKeys(firstName);
+		lastNameTextField.sendKeys(lastName);
+		emailTextField.sendKeys(email);
+		telephoneTextField.sendKeys(telephone);
+		passwordTextField.sendKeys(password);
+		confirmPasswordTextField.sendKeys(confirmPassword);
+		subscribeYes.click();
+		privacyPolicyCheckBox.click();
+		continueButton.click();
+	}
+	
+	public boolean verifyPasswordMismatchWarningMessage(String expectedPasswordMismatchWarningMessage) {
+		boolean passwordMismatchWarningMessageStatus = passwordMismatch.getText().equals(expectedPasswordMismatchWarningMessage);
+		return passwordMismatchWarningMessageStatus;
 	}
 }
